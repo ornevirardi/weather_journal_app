@@ -35,16 +35,23 @@ function listening(){
 //Add a GET route that returns the projectData object in your server code Then, add a POST route that adds incoming data to projectData.The POST route should anticipate receiving three pieces of data from the request body: temperature, date, user response. Make sure your POST route is setup to add each of these values with a key to projectData
 
 
-app.get('/all', function(req, res){res.send(projectData);});
+// app.get('/all', function(req, res){res.send(projectData);});
 
-const data = [];
+app.get('/all', function(req, res){
+    console.log("Before /all" + projectData);
+    res.send(projectData);
+});
+
 app.post('/weatherData', addWeather);
+
 function addWeather(req,res){
+    console.log("Before /weatherData:  " + req.body.temperature);
     const newWeatherData = {
         temperature: req.body.temperature,
         date: req.body.date,
         userResponse: req.body.userResponse
     }
     projectData = newWeatherData;
+    console.log("Before /weatherData:  " + projectData.temperature);
+    res.send(projectData); 
 };
-
