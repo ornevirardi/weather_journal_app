@@ -25,3 +25,16 @@ const postData = async ( url = '', data = {})=>{
       console.log("error", error);
       }
   }
+
+
+  const getData = async function () {
+    const request = await fetch("/all");
+    try {
+      const all = await request.json();   
+      console.log("getData response: "+  all.temperature + "|| " +  all.date + "|| " +  all.userResponse);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  postData("/weatherData", {temperature:123, date:new Date(), userResponse:"hello"})
+    .then( () => getData())
