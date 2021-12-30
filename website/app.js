@@ -16,9 +16,9 @@ function performAction(e){
   const zipData =  document.getElementById('zip').value;
   const feelings =  document.getElementById('feelings').value;
     postData("/weatherData", {
-    temperature: 123,
+    temperature: '',
     date: new Date(),
-    userResponse: "hello"
+    userResponse: "It feels nice"
   }).then(() => updateUI());
 }
 //getData and postData from the lesson 3, concept 6: Client side, Server side & "putting it all together - exercise":
@@ -71,7 +71,7 @@ const postData = async (url = "", data = {}) => {
     }
   };
 
-  //update UI - Lesson 4- concept 10:
+  //update UI - Lesson 4- concept 10
   
   const updateUI = async () => {
     const request = await fetch("/all");
