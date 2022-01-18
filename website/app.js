@@ -5,8 +5,9 @@ const apiKey = "c336cc1b4bc149e2a2a250056871f723";
 const zipCode = "94112";
 
 // Create a new date instance dynamically with JS
+
 let d = new Date();
-let newDate = d.getMonth((+1)) + "." + d.getDate() + "." + d.getFullYear();
+let newDate = d.getMonth()+ 1 + "." + d.getDate() + "." + d.getFullYear();
 
 //Event listener to actually get stuff done + update the UI using then to chain:
 
@@ -15,11 +16,12 @@ document.getElementById('generate').addEventListener('click', performAction);
 function performAction(e){
   const zipData =  document.getElementById('zip').value;
   const feelings =  document.getElementById('feelings').value;
-    postData("/weatherData", {
-    temperature: "",
-    date: new Date(),
-    userResponse: feelings
-  }).then(() => updateUI());
+  getDataOpenWeather(apiUrl, apiKey, zipCode).then( (data) => 
+  postData("/weatherData", {
+  temperature: data.main.temp,
+  date: newDate,
+  userResponse: feelings 
+  })).then(() => updateUI());
 }
 //getData and postData from the lesson 3, concept 6: Client side, Server side & "putting it all together - exercise":
 
@@ -70,14 +72,6 @@ const postData = async (url = "", data = {}) => {
       console.log("error", error);
     }
   };
-//Code provided by a mentor to a question I asked in url: https://knowledge.udacity.com/questions/782363
-  getDataOpenWeather(apiUrl, apiKey, zipCode).then( (data) => 
-  postData("/weatherData", {
-  temperature: data.main.temp,
-  date: newDate,
-  userResponse: feelings 
-  })).then(() => updateUI());
-
 
   //update UI - Lesson 4- concept 10
   
