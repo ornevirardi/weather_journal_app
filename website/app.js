@@ -61,7 +61,7 @@ const postData = async (url = "", data = {}) => {
       console.log(error);
     }
   };
-  
+  // Answer to the question https://knowledge.udacity.com/questions/782363 made by me
   const getDataOpenWeather = async (apiUrl, apiKey, zipCode) => {
     const request = await fetch(apiUrl + zipCode + "&appid=" + apiKey);
     try {
